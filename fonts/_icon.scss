@@ -1,0 +1,80 @@
+@import "icon-name";//$icon-name
+
+@function class-icon(){ //ส่งกลับค่าไอค่อนแบบอะแรร์   ชื่อ,อักษร
+    $set-font-icons:()  !default;
+
+    $output:();
+
+    @if $set-font-icons == () {
+         $output:$icon-name;
+    }@else{
+        @each $k in  $set-font-icons {
+            $v:map-get($icon-name,$k);
+            $newmap: ($k: $v);
+            $output:map-merge($output,$newmap);
+        }
+
+    }
+
+    @return $output;
+
+}
+
+
+@mixin app-icons($show-font-face:true, $prefix:''){
+    $prefix:if($prefix =='',$set-prefix,$prefix);
+    @if $show-font-face {
+        /* Icons form  https://boosolar.github.io/fonts/  */
+        @font-face {
+          font-family: 'pun-icons';
+          src:  url('https://boosolar.github.io/fonts/icons.eot?dawv5t');
+          src:  url('https://boosolar.github.io/fonts/icons.eot?dawv5t#iefix') format('embedded-opentype'),
+            url('https://boosolar.github.io/fonts/icons.ttf?dawv5t') format('truetype'),
+            url('https://boosolar.github.io/fonts/icons.woff?dawv5t') format('woff'),
+            url('https://boosolar.github.io/fonts/icons.svg?dawv5t#pun-icons') format('svg');
+          font-weight: normal;
+          font-style: normal;
+        }
+
+    }
+
+    //$class_txt:'\"#{$prefix}icon-\"';
+    [class^="#{$prefix}icon-" ]:before, [class*=" #{$prefix}icon-"]:before {
+      /* use !important to prevent issues with browser extensions that change fonts */
+      font-family: 'pun-icons' !important;
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      //line-height: 1;
+
+        display: inline-flex;
+        justify-content: center;
+        align-items: center; align-content: center;
+
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @each $k, $v in class-icon(){
+        .#{$prefix}#{$k}::before {
+          content: unquote("\"\\#{$v}\"") ;
+        }
+    }
+
+    .#{$prefix}icon-none:before {
+      content: "\f044";
+        color: transparent;
+
+    }
+    .#{$prefix}icon-none0:before {
+      content: "\f044";
+        color: transparent;
+        max-height: 0;
+        max-width:  0;
+
+    }
+}
+
