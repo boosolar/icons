@@ -21,17 +21,18 @@
 }
 
 
-@mixin app-icons($show-font-face:true, $prefix:''){
+@mixin app-icon($show-font-face:true, $prefix:''){
+    $set-prefix:'' !default;
     $prefix:if($prefix =='',$set-prefix,$prefix);
     @if $show-font-face {
         /* Icons form  https://boosolar.github.io/fonts/  */
         @font-face {
           font-family: 'pun-icons';
-          src:  url('https://boosolar.github.io/fonts/icons.eot?dawv5t');
-          src:  url('https://boosolar.github.io/fonts/icons.eot?dawv5t#iefix') format('embedded-opentype'),
-            url('https://boosolar.github.io/fonts/icons.ttf?dawv5t') format('truetype'),
-            url('https://boosolar.github.io/fonts/icons.woff?dawv5t') format('woff'),
-            url('https://boosolar.github.io/fonts/icons.svg?dawv5t#pun-icons') format('svg');
+          src:  url('https://boosolar.github.io/icons/fonts/icons.eot?olz7mx');
+          src:  url('https://boosolar.github.io/icons/fonts/icons.eot?olz7mx#iefix') format('embedded-opentype'),
+            url('https://boosolar.github.io/icons/fonts/icons.ttf?olz7mx') format('truetype'),
+            url('https://boosolar.github.io/icons/fonts/icons.woff?olz7mx') format('woff'),
+            url('https://boosolar.github.io/icons/fonts/icons.svg?olz7mx#icons') format('svg');
           font-weight: normal;
           font-style: normal;
         }
